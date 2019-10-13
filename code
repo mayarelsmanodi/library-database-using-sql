@@ -1,0 +1,157 @@
+CREATE TABLE Publisher (
+publisher_id INT(100) AUTO_INCREMENT NOT NULL,
+publisher_name VARCHAR(100),
+PRIMARY KEY (publisher_id)
+);
+CREATE TABLE Library_items (
+item_id INT(100) AUTO_INCREMENT NOT NULL,
+publisher_id INT(100),
+PRIMARY KEY (item_id),
+FOREIGN KEY (publisher_id)
+REFERENCES Publisher (publisher_id)
+);
+CREATE TABLE Library_user (
+user_id INT(100) AUTO_INCREMENT NOT NULL,
+user_name VARCHAR(100),
+Email VARCHAR(100),
+address VARCHAR(100),
+PRIMARY KEY (user_id)
+
+
+CREATE TABLE Author (
+author_id INT(100) AUTO_INCREMENT NOT NULL,
+author_name VARCHAR(100),
+PRIMARY KEY (author_id)
+);
+CREATE TABLE HAS (
+author_id INT(100),
+item_id INT(100),
+FOREIGN KEY (author_id)
+REFERENCES Author (author_id),
+FOREIGN KEY (item_id)
+REFERENCES Library_items (item_id)
+);
+CREATE TABLE Uses (
+user_id INT(100),
+item_id INT(100),
+FOREIGN KEY (user_id)
+REFERENCES Library_user (user_id),
+FOREIGN KEY (item_id)
+REFERENCES Library_items (item_id)
+);
+
+CREATE TABLE Written_item (
+item_id INT(100) NOT NULL,
+user_id INT(100),
+title VARCHAR(100),
+written_item_type CHAR(1) NOT NULL,
+number_pages INT(100),
+release_data DATE,
+PRIMARY KEY (item_id),
+FOREIGN KEY (item_id)
+REFERENCES Library_items (item_id),
+FOREIGN KEY (user_id)
+REFERENCES Library_user (user_id)
+);
+CREATE TABLE CD (
+item_id INT(100) NOT NULL,
+cd_name VARCHAR(100),
+size INT(100),
+PRIMARY KEY (item_id),
+FOREIGN KEY (item_id)
+REFERENCES Library_items (item_id)
+);
+
+ INSERT INTO TABLES:
+#Insert Publisher
+insert into Publisher (publisher_name) values ('newyork');
+insert into Publisher (publisher_name) values ('england publisher');
+insert into Publisher (publisher_name) values ('al shrouk');
+insert into Publisher (publisher_name) values ('garer');
+insert into Publisher (publisher_name) values ('dar nashr');
+insert into Publisher (publisher_name) values ('al shrouk');
+#Insert Author
+insert into Author (Author_name) values ('J. K. Rowling');
+insert into Author (Author_name) values ('Daniel Kahneman');
+insert into Author (Author_name) values ('Ramez Elmasri');
+insert into Author (Author_name) values ('Ahmed Morad');
+insert into Author (Author_name) values ('Kgawla Hamdy');
+insert into Author (Author_name) values ('Ahmed Abd Almaged');
+#Insert Users
+insert into Library_user (user_name,Email,address) values ('Yasmin','Yasmin@yahoo.com','Elzetoon');
+insert into Library_user (user_name,Email,address) values ('Salma','Salma@yahoo.com','New-Cairo');
+insert into Library_user (user_name,Email,address) values ('Mayar','Mayar@yahoo.com','Dokki');
+insert into Library_user (user_name,Email,address) values ('Hajar','Hajar@yahoo.com','Elqobba');
+
+insert into Library_user (user_name,Email,address) values ('Arwa','Arwa@yahoo.com','Maadi');
+insert into Library_user (user_name,Email,address) values ('Asmaa','Asmaa@yahoo.com','Helwan');
+insert into Library_user (user_name,Email,address) values ('Aya','Aya@yahoo.com','Elmarg');
+insert into Library_user (user_name,Email,address) values ('Habiba','Habiba@yahoo.com','Ramsis');
+insert into Library_user (user_name,Email,address) values ('Toka','Toka@yahoo.com','Tahrer');
+insert into Library_user (user_name,Email,address) values ('Raheeq','Raheeq@yahoo.com','Giza');
+#Insert Library-item
+insert into Library_items (publisher_id) values (4);
+insert into Library_items (publisher_id) values (2);
+insert into Library_items (publisher_id) values (3);
+insert into Library_items (publisher_id) values (1);
+insert into Library_items (publisher_id) values (6);
+insert into Library_items (publisher_id) values (5);
+insert into Library_items (publisher_id) values (2);
+insert into Library_items (publisher_id) values (1);
+insert into Library_items (publisher_id) values (4);
+insert into Library_items (publisher_id) values (6);
+insert into Library_items (publisher_id) values (3);
+insert into Library_items (publisher_id) values (2);
+insert into Library_items (publisher_id) values (4);
+
+insert into Library_items (publisher_id) values (6);
+insert into Library_items (publisher_id) values (5);
+insert into Library_items (publisher_id) values (3);
+insert into Library_items (publisher_id) values (2);
+insert into Library_items (publisher_id) values (1);
+insert into Library_items (publisher_id) values (1);
+insert into Library_items (publisher_id) values (2);
+insert into Library_items (publisher_id) values (1);
+insert into Library_items (publisher_id) values (1);
+insert into Library_items (publisher_id) values (4);
+#Insert Books
+insert into Written_item (item_id,user_id,title,written_item_type,number_pages) values (23,'1','Harry Potter and the Deathly Hallows','B','200');
+insert into Written_item (item_id,user_id,title,written_item_type,number_pages) values (1,'9','Harry Potter and the Half-Blood Prince','B','450');
+insert into Written_item (item_id,user_id,title,written_item_type,number_pages) values (2,'2','Thinking, Fast and Slow','B','100');
+insert into Written_item (item_id,user_id,title,written_item_type,number_pages) values (3,'4','Choices, Values, and Frames','B','500');
+insert into Written_item (item_id,user_id,title,written_item_type,number_pages) values (4,'3','Fundamentals of Database Systems','B','1000');
+insert into Written_item (item_id,user_id,title,written_item_type,number_pages) values (5,'8','The Shinning','B','320');
+insert into Written_item (item_id,user_id,title,written_item_type,number_pages) values (6,'7','The Outsider','B','700');
+insert into Written_item (item_id,user_id,title,written_item_type,number_pages) values (7,'6','Harry Potter and the Philosopher Stone','B','150');
+
+#Insert Magazines
+insert into Written_item (item_id,user_id,title,written_item_type,release_data) values (8,'5','Time','M','1996-10-22');
+insert into Written_item (item_id,user_id,title,written_item_type,release_data) values (9,'2','Vanity Fair','M','2011-1-28');
+insert into Written_item (item_id,user_id,title,written_item_type,release_data) values (10,'1','People','M','1997-6-26');
+insert into Written_item (item_id,user_id,title,written_item_type,release_data) values (11,'2','Vogue','M','2007-7-21');
+insert into Written_item (item_id,user_id,title,written_item_type,release_data) values (12,'1','InStyle','M','2005-6-19');
+insert into Written_item (item_id,user_id,title,written_item_type,release_data) values (13,'7','Glamour','M','2011-10-25');
+insert into Written_item (item_id,user_id,title,written_item_type,release_data) values (14,'8','National Geographic','M','2000-11-25');
+insert into Written_item (item_id,user_id,title,written_item_type,release_data) values (15,'4','Elle','M','1989-1-1');
+insert into Written_item (item_id,user_id,title,written_item_type,release_data) values (16,'3','Seventeen','M','2020-5-25');
+insert into Written_item (item_id,user_id,title,written_item_type,release_data) values (17,'6','The Atlantic','M','2010-10-25');
+#Insert CDs
+insert into CD (item_id,cd_name,size) values (18,'Conan',15489);
+insert into CD (item_id,cd_name,size) values (19,'Abqryat Omar',1040);
+insert into CD (item_id,cd_name,size) values (20,'Seven Samurai',542);
+insert into CD (item_id,cd_name,size) values (21,'Kingdom of Heaven',780);
+insert into CD (item_id,cd_name,size) values (22,'Lion King',980);
+
+
+#Insert HAS
+insert into HAS (author_id,item_id) values (1,1);
+insert into HAS (author_id,item_id) values (1,7);
+insert into HAS (author_id,item_id) values (3,5);
+insert into HAS (author_id,item_id) values (5,14);
+insert into HAS (author_id,item_id) values (6,12);
+#Insert Uses
+insert into Uses (user_id,item_id) values (1,1);
+insert into Uses (user_id,item_id) values (2,18);
+insert into Uses (user_id,item_id) values (5,22);
+insert into Uses (user_id,item_id) values (3,20);
+insert into Uses (user_id,item_id) values (4,15);
